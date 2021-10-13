@@ -3,7 +3,6 @@ package top.mowang.boot.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  * SpringBoot2-quick-start
@@ -13,7 +12,6 @@ import lombok.ToString;
  * @date : 2021/10/13 17:22
  **/
 @Data
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
