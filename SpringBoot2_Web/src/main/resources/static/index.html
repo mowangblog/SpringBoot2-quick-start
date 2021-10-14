@@ -20,5 +20,16 @@
         <input type="hidden" name="_m" value="delete">
         <input value="delete提交" type="submit"/>
     </form>
+
+
+    <form action="/getPost" method="post">
+        <input type="text" name="name"/>
+        <input type="password" name="password"/>
+        <input value="post提交" type="submit"/>
+    </form>
+    <hr/>
+    <a href="/user/1/李煊" >PathVariable路径请求参数</a>
+    <a href="/boss/1;age=10/2;age=20" >矩阵变量请求参数</a>
+    <a href="/path/1;age=10;name=李煊" >简单矩阵变量请求参数</a>
 </body>
 </html>

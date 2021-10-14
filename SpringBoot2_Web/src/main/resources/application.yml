@@ -33,3 +33,4 @@ person:
     health: [{name: mario,weight: 47}]
 myconfig:
   method-param: _m
+  remove-semicolon-content: false
