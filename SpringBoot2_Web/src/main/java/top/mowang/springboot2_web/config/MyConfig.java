@@ -5,11 +5,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.util.UrlPathHelper;
+import top.mowang.springboot2_web.pojo.Pet;
 
 /**
  * SpringBoot2-quick-start
@@ -36,7 +39,7 @@ public class MyConfig /*implements WebMvcConfigurer */{
 
     /**
      * 配置可以使用矩阵变量，使用ConfigurationProperties让我们可以在配置文件中配置参数
-     *
+     * addFormatters 里面 registry.addConverter 添加自定义类型转换器 String转换为pet
      * @description:
      * @author: Xuan Li
      * @date: 2021/10/14 18:16
@@ -49,6 +52,20 @@ public class MyConfig /*implements WebMvcConfigurer */{
                 UrlPathHelper urlPathHelper = new UrlPathHelper();
                 urlPathHelper.setRemoveSemicolonContent(RemoveSemicolonContent);
                 configurer.setUrlPathHelper(urlPathHelper);
+            }
+            //添加自定义类型转换器 String转换为pet
+            @Override
+            public void addFormatters(FormatterRegistry registry) {
+                registry.addConverter(new Converter<String, Pet>() {
+                    @Override
+                    public Pet convert(String source) {
+                        Pet pet = new Pet();
+                        String[] split = source.split(",");
+                        pet.setName(split[0]);
+                        pet.setWeight(Double.parseDouble(split[1]));
+                        return pet;
+                    }
+                });
             }
         };
     }

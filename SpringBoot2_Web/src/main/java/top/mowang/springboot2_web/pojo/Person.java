@@ -1,7 +1,9 @@
 package top.mowang.springboot2_web.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -22,6 +24,8 @@ import java.util.Set;
 public class Person {
     private String userName;
     private Boolean boss;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
     private Date birth;
     private Integer age;
     private Pet pet;

@@ -9,7 +9,7 @@ spring:
 person:
   userName: zhangsan
   boss: false
-  birth: 2019/12/12 20:12:33
+  birth: 2019-12-12 20:12
   age: 18
   pet:
     name: tomcat

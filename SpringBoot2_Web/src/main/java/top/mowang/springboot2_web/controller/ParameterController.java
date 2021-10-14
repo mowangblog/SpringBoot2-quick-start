@@ -1,6 +1,7 @@
 package top.mowang.springboot2_web.controller;
 
 import org.springframework.web.bind.annotation.*;
+import top.mowang.springboot2_web.pojo.Person;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,11 @@ import java.util.Map;
  **/
 @RestController
 public class ParameterController {
+
+    @PutMapping("/putUser")
+    public Person putUser(Person person){
+        return person;
+    }
 
     @GetMapping("/user/{id}/{name}")
     public Map getUser(@PathVariable("id") Integer id,

@@ -31,5 +31,18 @@
     <a href="/user/1/李煊" >PathVariable路径请求参数</a>
     <a href="/boss/1;age=10/2;age=20" >矩阵变量请求参数</a>
     <a href="/path/1;age=10;name=李煊" >简单矩阵变量请求参数</a>
+    <hr/>
+    <form action="/putUser" method="post">
+        <input type="text" name="userName" >
+        <input type="radio" name="boss" value="true">true
+        <input type="radio" name="boss" value="false">false
+        <input type="text" name="birth" >
+        <input type="number" name="age" >
+<!--        <input type="text" name="pet.name" >-->
+<!--        <input type="text" name="pet.weight" >-->
+        <input type="hidden" name="pet" value="阿毛,100.1">
+        <input type="hidden" name="_m" value="put">
+        <input value="put提交" type="submit"/>
+    </form>
 </body>
 </html>
