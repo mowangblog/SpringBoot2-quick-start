@@ -3,6 +3,9 @@ spring:
     hiddenmethod:
       filter:
         enabled: true
+#        开启请求参数决定返回类型
+    contentnegotiation:
+      favor-parameter: true
 #    static-path-pattern: /res/**
 
 # yaml表示以上对象
