@@ -43,9 +43,12 @@ public class IndexController {
         }
 
     }
-
     @GetMapping("/index.html")
     public String goIndex(HttpSession session, Model model){
+        return "index";
+    }
+    @GetMapping("/index")
+    public String goIndex2(HttpSession session, Model model){
         return "index";
     }
 }
