@@ -25,7 +25,7 @@
 <div class="container">
 
     <form class="form-signin" th:action="@{/login}" method="post">
-        <label th:text="${msg}" style="color:red;"></label>
+        <label th:text="${session.msg}" style="color:red;"></label>
         <div class="form-signin-heading text-center">
             <h1 class="sign-title">登录</h1>
             <img src="images/login-logo.png" alt=""/>

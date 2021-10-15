@@ -46,10 +46,6 @@ public class IndexController {
 
     @GetMapping("/index.html")
     public String goIndex(HttpSession session, Model model){
-        if(session.getAttribute("user") == null){
-            model.addAttribute("msg","请先登录");
-            return "/login";
-        }
         return "index";
     }
 }
