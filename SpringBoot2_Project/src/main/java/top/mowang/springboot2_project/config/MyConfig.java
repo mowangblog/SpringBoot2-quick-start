@@ -3,7 +3,7 @@ package top.mowang.springboot2_project.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import top.mowang.springboot2_project.LoginInterceptor;
+import top.mowang.springboot2_project.interceptor.LoginInterceptor;
 
 /**
  * SpringBoot2-quick-start

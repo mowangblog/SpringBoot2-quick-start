@@ -2,11 +2,11 @@ package top.mowang.springboot2_project.controller;
 
 import cn.hutool.Hutool;
 import cn.hutool.core.util.StrUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import top.mowang.springboot2_project.pojo.User;
 
 import javax.servlet.http.HttpSession;
@@ -20,6 +20,16 @@ import javax.servlet.http.HttpSession;
  **/
 @Controller
 public class IndexController {
+
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+
+    @GetMapping("/sql")
+    @ResponseBody
+    public String selectCount(){
+        Long count = jdbcTemplate.queryForObject("select count(*) from t_user", Long.class);
+        return count.toString();
+    }
 
     @RequestMapping(value = {"/", "/login"})
     public String index() {

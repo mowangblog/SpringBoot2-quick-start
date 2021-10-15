@@ -1,4 +1,4 @@
-package top.mowang.springboot2_project;
+package top.mowang.springboot2_project.interceptor;
 
 import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
