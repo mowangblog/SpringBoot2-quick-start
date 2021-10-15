@@ -25,13 +25,14 @@
 <div class="container">
 
     <form class="form-signin" th:action="@{/login}" method="post">
+        <label th:text="${msg}" style="color:red;"></label>
         <div class="form-signin-heading text-center">
             <h1 class="sign-title">登录</h1>
             <img src="images/login-logo.png" alt=""/>
         </div>
         <div class="login-wrap">
-            <input type="text" class="form-control" placeholder="用户名" autofocus>
-            <input type="password" class="form-control" placeholder="密码">
+            <input type="text" class="form-control" name="username" placeholder="用户名" autofocus>
+            <input type="password" class="form-control" name="password" placeholder="密码">
 
             <button class="btn btn-lg btn-login btn-block" type="submit">
                 <i class="fa fa-check"></i>

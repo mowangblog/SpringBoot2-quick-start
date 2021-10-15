@@ -1,10 +1,15 @@
 package top.mowang.springboot2_project.controller;
 
 import cn.hutool.Hutool;
+import cn.hutool.core.util.StrUtil;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import top.mowang.springboot2_project.pojo.User;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * SpringBoot2-quick-start
@@ -22,14 +27,29 @@ public class IndexController {
     }
 
     @PostMapping("/login")
-    public String login(String username,String password){
+    public String login(User user, HttpSession session, Model model){
+        if (StrUtil.isEmpty(user.getUsername())||StrUtil.isEmpty(user.getPassword())) {
+            model.addAttribute("msg","账号密码不能为空");
+            return "/login";
+        }
+        String password = "123456";
+        if (password.equals(user.getPassword())) {
+            session.setAttribute("user",user);
+            //登录成功重新向防止表单重复提交
+            return "redirect:index.html";
+        }else {
+            model.addAttribute("msg","账号密码错误");
+            return "/login";
+        }
 
-        //登录成功重新向防止表单重复提交
-        return "redirect:index.html";
     }
 
     @GetMapping("/index.html")
-    public String goIndex(){
+    public String goIndex(HttpSession session, Model model){
+        if(session.getAttribute("user") == null){
+            model.addAttribute("msg","请先登录");
+            return "/login";
+        }
         return "index";
     }
 }
