@@ -21,34 +21,43 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class IndexController {
 
-    @RequestMapping(value = {"/","/login"})
-    public String index(){
+    @RequestMapping(value = {"/", "/login"})
+    public String index() {
         return "login";
     }
 
     @PostMapping("/login")
-    public String login(User user, HttpSession session, Model model){
-        if (StrUtil.isEmpty(user.getUsername())||StrUtil.isEmpty(user.getPassword())) {
-            model.addAttribute("msg","账号密码不能为空");
+    public String login(User user, HttpSession session, Model model) {
+        if (StrUtil.isEmpty(user.getUsername()) || StrUtil.isEmpty(user.getPassword())) {
+            model.addAttribute("msg", "账号密码不能为空");
             return "/login";
         }
         String password = "123456";
         if (password.equals(user.getPassword())) {
-            session.setAttribute("user",user);
+            session.setAttribute("user", user);
             //登录成功重新向防止表单重复提交
             return "redirect:index.html";
-        }else {
-            model.addAttribute("msg","账号密码错误");
+        } else {
+            model.addAttribute("msg", "账号密码错误");
             return "/login";
         }
 
     }
+
     @GetMapping("/index.html")
-    public String goIndex(HttpSession session, Model model){
+    public String goIndex(HttpSession session, Model model) {
         return "index";
     }
+
     @GetMapping("/index")
-    public String goIndex2(HttpSession session, Model model){
+    public String goIndex2(HttpSession session, Model model) {
         return "index";
     }
+
+    @GetMapping("/getError")
+    public String getError(HttpSession session, Model model) {
+        int i = 10 / 0;
+        return "index";
+    }
+
 }

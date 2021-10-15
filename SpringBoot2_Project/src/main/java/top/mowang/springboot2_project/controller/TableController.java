@@ -3,6 +3,7 @@ package top.mowang.springboot2_project.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import top.mowang.springboot2_project.expection.UserTooManyException;
 import top.mowang.springboot2_project.pojo.User;
 
 import javax.servlet.http.HttpSession;
@@ -31,6 +32,9 @@ public class TableController {
                 new User("lisi", "123444"),
                 new User("haha", "aaaaa"),
                 new User("hehe ", "aaddd"));
+        if(users.size()>3){
+            throw new UserTooManyException();
+        }
         model.addAttribute("users",users);
         return "table/dynamic_table";
     }
