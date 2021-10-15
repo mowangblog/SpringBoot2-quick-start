@@ -7,12 +7,23 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.stereotype.Component;
+import org.springframework.web.accept.HeaderContentNegotiationStrategy;
+import org.springframework.web.accept.ParameterContentNegotiationStrategy;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
+import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.util.UrlPathHelper;
+import top.mowang.springboot2_web.converter.MyConverter;
 import top.mowang.springboot2_web.pojo.Pet;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * SpringBoot2-quick-start
@@ -47,6 +58,26 @@ public class MyConfig /*implements WebMvcConfigurer */{
     @Bean
     public WebMvcConfigurer webMvcConfigurer(){
         return new WebMvcConfigurer() {
+
+            //自定义format类型
+            @Override
+            public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+                Map<String, MediaType> mediaTypes = new HashMap<>();
+                mediaTypes.put("json",MediaType.APPLICATION_JSON);
+                mediaTypes.put("xml",MediaType.APPLICATION_XML);
+                mediaTypes.put("mowang",MediaType.parseMediaType("application/mowang"));
+                ParameterContentNegotiationStrategy strategy =
+                        new ParameterContentNegotiationStrategy(mediaTypes);
+//                strategy.setParameterName("ff");
+                HeaderContentNegotiationStrategy headerStrategy = new HeaderContentNegotiationStrategy();
+                configurer.strategies(Arrays.asList(strategy,headerStrategy) );
+            }
+
+            //添加自定义数据类型转换器
+            @Override
+            public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+                converters.add(new MyConverter());
+            }
             @Override
             public void configurePathMatch(PathMatchConfigurer configurer) {
                 UrlPathHelper urlPathHelper = new UrlPathHelper();
@@ -67,6 +98,7 @@ public class MyConfig /*implements WebMvcConfigurer */{
                     }
                 });
             }
+
         };
     }
 
