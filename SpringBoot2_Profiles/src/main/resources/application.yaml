@@ -1,0 +1,7 @@
+spring:
+  profiles:
+    active: myprod
+    group:
+      myprod[0]: prod
+      myprod[1]: pdd
+      test[0]: test
