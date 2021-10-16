@@ -1,14 +1,21 @@
 package top.mowang.springboot2_project.dao;
 
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.*;
 import org.yaml.snakeyaml.events.Event;
 import top.mowang.springboot2_project.pojo.User;
 
 import java.util.List;
 
-@Mapper
-public interface UserDao {
+/**
+ *  UserMapper
+ * @author : Xuan Li
+ * @website : https://mowangblog.top
+ * @date : 2021/10/16 15:36
+ **/
+//@Mapper
+public interface UserDao extends BaseMapper<User> {
 
     public List<User> getUserAll();
 
