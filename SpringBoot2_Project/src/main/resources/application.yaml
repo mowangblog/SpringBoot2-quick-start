@@ -12,7 +12,6 @@ management:
   endpoint:
     health:
       show-details: always
-
 spring:
   servlet:
     multipart:
@@ -44,6 +43,13 @@ spring:
           enabled: true
           config:
             drop-table-allow: false
+  boot:
+    admin:
+      client:
+        url: http://localhost:8888
+        instance:
+          prefer-ip: true
+          name: @project.artifactId@
 mybatis:
 #  config-location: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath:mybatis/mapper/*.xml
