@@ -1,5 +1,6 @@
 package top.mowang.springboot2_project;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
@@ -11,6 +12,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
  * @website : https://mowangblog.top
  * @date : 2021/10/15 14:55
  **/
+//@MapperScan("top.mowang.springboot2_project.dao") 配置之后可以不用每个mapper都设置@mapper
 @ServletComponentScan(basePackages = "top.mowang")
 @SpringBootApplication
 public class SpringBoot2ProjectApplication {
