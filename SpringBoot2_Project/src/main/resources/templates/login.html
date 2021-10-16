@@ -32,8 +32,8 @@
         </div>
         <div class="login-wrap">
             <label th:text="${session.msg}" style="color:red;"></label>
-            <input type="text" class="form-control" name="username" placeholder="用户名" autofocus>
-            <input type="password" class="form-control" name="password" placeholder="密码">
+            <input type="text" class="form-control" name="username" th:value="魔王" placeholder="用户名" autofocus>
+            <input type="password" class="form-control" name="password" th:value="123456" placeholder="密码">
 
             <button class="btn btn-lg btn-login btn-block" type="submit">
                 登录

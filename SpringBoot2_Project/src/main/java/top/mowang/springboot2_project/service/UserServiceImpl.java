@@ -2,6 +2,8 @@ package top.mowang.springboot2_project.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,8 +26,14 @@ public class UserServiceImpl extends ServiceImpl<UserDao,User> implements UserSe
     @Autowired
     UserDao mapper;
 
+    Counter counter;
+    public UserServiceImpl(MeterRegistry meterRegistry){
+        counter = meterRegistry.counter("UserService.method.getUserAll.running.counter");
+    }
+
     @Override
     public List<User> getUserAll(){
+        counter.increment();
         List<User> users = mapper.selectList(new QueryWrapper<>());
         return users;
     }
